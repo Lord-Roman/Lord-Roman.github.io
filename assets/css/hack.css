@@ -1,0 +1,43 @@
+*{
+	background-color: #000;
+}
+p{
+	font-family: Arial;
+	color: #00bb00;
+}
+.input{
+	font-size: 40px;
+	background-color: #111;
+	border: none;
+	outline:none;
+	text-align: center;
+	font-family: Arial;
+	color: #00bb00;
+}
+.input-wrapper{
+	margin: 0;
+	font-size: 40px;
+	text-align: center;
+	font-family: Arial;
+	color: #00bb00;
+}
+.blue-wrapper, .green-wrapper{
+	margin: 0 auto;
+	width: 100px;
+}
+.blue{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #0000ff;
+	margin: 0 5px;
+}
+.green{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #00ff00;
+	margin: 0 5px;
+}
