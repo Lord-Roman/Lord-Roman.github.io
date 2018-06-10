@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="assets/css/hack.css">
+	<title></title>
+</head>
+<body>
+	<div class="container">
+		<p>
+			<p>./  ADD    NAME=APLDEV
+			<p>         MACRO                                                          00630000></p>
+			<p>&L       APLDEV &ADR,&TYPE=AMBIG,&SAD=SAD1,&EXPRESS=NO                  01260000></p>
+			<p>.*             5734-XM6 COPYRIGHT IBM CORP. 1969, 1970                  01890000></p>
+			<p>.*             5736-XM6 COPYRIGHT IBM CORP. 1969, 1970                  02520000></p>
+			<p>.*     REFER TO INSTRUCTIONS ON COPYRIGHT NOTICE FORM NO 120-2083       03150000></p>
+			<p>         GBLA  &PADR,&TCNT,&FADR                                        03780000></p>
+			<p>         GBLB  &TERMT                                                   04410000></p>
+			<p>         GBLC  &TERMTL,&PUBFIR,&PUBLAST                                 05040000></p>
+
+
+		</p>
+		<p class="input-wrapper"><span class="pass1">0000</span><input class="input" type="text" size="1" maxlength="4"><span class="pass2">0000</span></p>
+		<div class="blue-wrapper"></div>
+		<div class="green-wrapper"></div>
+	</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	var letters = Math.floor((Math.random() * 7));
+	var str ='';
+
+	var blue = '<span class="blue"></span>';
+	var green = '<span class="green"></span>';
+
+
+	function arrayPop(ar,ind) {
+		for (var i = ind; i < a.length; i++) {
+			a[i] = a[i+1];
+		}
+		ar.pop();
+	}
+	for (var i = 0; i < letters; i++) {
+		if(Math.floor((Math.random() * 3))== 2 ) 
+			str=str + String.fromCharCode( Math.floor(Math.random() * (90-75) ) + 65 );
+		if(Math.floor((Math.random() * 3)) == 1 ) 
+			str=str + String.fromCharCode( Math.floor(Math.random() * (122-97) ) + 97 );
+		else
+			str=str + String.fromCharCode( Math.floor((Math.random() * (58-48) ) + 48) );
+	}
+	$('.pass1').text(str);
+	var str ='';
+	for (var i = 0; i < 7 - letters; i++) {
+		if(Math.floor((Math.random() * 3))== 2 ) 
+			str=str + String.fromCharCode( Math.floor(Math.random() * (90-75) ) + 65 );
+		if(Math.floor((Math.random() * 3)) == 1 ) 
+			str=str + String.fromCharCode( Math.floor(Math.random() * (122-97) ) + 97 );
+		else
+			str=str + String.fromCharCode( Math.floor((Math.random() * (58-48) ) + 48) );
+	}
+	$('.pass2').text(str);
+	var a = ['0','1','2','3','4','5','6','7','8','9'];
+	var mainPass = '';
+	var g = 0;
+	var c = 0;
+
+	for (var i = 0; i < 4; i++) {
+		var index = Math.floor(Math.random() * (10-i));
+		mainPass = mainPass + a[index];
+		// console.log(mainPass);
+
+		arrayPop(a,index);
+	}
+	$(document).keyup(function(){
+	    g = 0;
+	    c = 0;
+
+	    if(event.keyCode==13)
+	    {
+	    	$('.blue').remove();
+	    	$('.green').remove();
+			rez = $('.input').val();
+			for (var i = 0 ; i < 4; i++) {
+				for (var j = 0 ; j < 4; j++) {
+					if(mainPass[i] == rez[j]){	
+						if(i == j){
+							g++;
+						}
+						else{
+							c++;	
+						}
+					}
+				}
+			}
+			console.log(mainPass);
+			console.log('bull',g);
+			console.log('cow',c);
+
+			if(g){
+				var timerGreen = setInterval(function() {
+					$( ".green-wrapper" ).append(green);
+				}, 500);
+				setTimeout(function() {
+				  clearInterval(timerGreen);
+				}, g*500);
+			}
+			if(c){
+				var timerBlue = setInterval(function() {
+					$( ".blue-wrapper" ).append(blue);
+				}, 500);
+				setTimeout(function() {
+				  clearInterval(timerBlue);
+				}, c*500);
+			}
+			return false;
+	    }
+	})
+	// $('.input').val(mainPass);
+</script>
+</html>
