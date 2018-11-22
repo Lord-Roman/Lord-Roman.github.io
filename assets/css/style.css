@@ -193,7 +193,7 @@ nav {
 .nav__item {
   font-family: 'Roboto', 'Arial', sans-serif;
   text-transform: uppercase;
-  color: #fff;
+  color: #000;
   cursor: pointer;
   padding: 0 12px;
   margin: 0 12px;
