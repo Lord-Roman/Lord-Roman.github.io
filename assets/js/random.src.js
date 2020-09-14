@@ -44,24 +44,20 @@ function getRandom(numberOfDice) {
 	charm = 0;
 	rez = [];
 
-	if(numberOfDice == 9){
-		charm = 1;
+	if(numberOfDice > 6){
+		charm++;
 	}
 	if(numberOfDice == 10){
-		charm = 2;
+		charm++;
 	}
 
 	for (var i = 0; i < numberOfDice; i++) {
 		dice = getDice();
 
 		if(dice == 1){
-			if(numberOfDice == 5){
-				dice = 9;
-			}else{
-				if(charm){
-					charm = charm - 1;
-					dice = getDice();
-				}
+			if(charm){
+				charm = charm - 1;
+				dice = getDice();
 			}
 		}	
 		rez.push(dice);
