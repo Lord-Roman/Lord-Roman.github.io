@@ -59,6 +59,7 @@ function Charm(dice) {
 }
 
 function getRandom(numberOfDice) {
+    document.getElementById("img").style.display = "none";
     success = 0;
     fail = 0;
     flawless = 0;
@@ -68,7 +69,7 @@ function getRandom(numberOfDice) {
 
 
 
-    if(numberOfDice >= 6){
+    if(numberOfDice >= 7){
         charm++;
     }
     if(numberOfDice >= 8){
@@ -77,24 +78,32 @@ function getRandom(numberOfDice) {
     if(numberOfDice == 10){
         charm++;
     }
-
+    let hornySuccess = randomInteger(1,numberOfDice);
     for (var i = 0; i < numberOfDice; i++) {
         dice = getDice();
 
         dice = Charm(dice);
         
-        let item = {color: '255,255', value:dice} 
-        rez.push(item);
+        let item = {color: '255,255', value:dice}
 
         if(dice >= difficult){
             success++;
             flawless++;
+            if(i == hornySuccess){
+                item.color = '0,255';
+                document.getElementById("img").style.display = "block";
+                document.getElementById("img").style.right = (randomInteger(0,window.innerWidth - 200))+'px'
+                document.getElementById("img").style.top = (randomInteger(0,window.innerHeight - 200))+'px'
+            }
         }
+        
         if(dice == 1){
             fail++;
             success--;
         }
         
+        rez.push(item);
+
         if(dice == 10){
             rethrow()
         }
