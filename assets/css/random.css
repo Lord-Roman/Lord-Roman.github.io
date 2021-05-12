@@ -1,7 +1,16 @@
 .wrapper {
+  background-color: #000;
   width: 550px;
   margin: calc(50vh - 75px) auto; }
-
+.img{
+  display: none;
+  position: absolute;
+  top: 100px;
+  right: 200px;
+  width: 200px;
+  height: 200px;
+  z-index: -1;
+}
 .glitch-text {
   text-align: center;
   line-height: 1;
