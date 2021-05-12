@@ -91,9 +91,12 @@ function getRandom(numberOfDice) {
             flawless++;
             if(i == hornySuccess){
                 item.color = '0,255';
-                document.getElementById("img").style.display = "block";
-                document.getElementById("img").style.right = (randomInteger(0,window.innerWidth - 200))+'px'
-                document.getElementById("img").style.top = (randomInteger(0,window.innerHeight - 200))+'px'
+                if(document.getElementById("img")){
+                    let element = document.getElementById("img")
+                    element.style.display = "block";
+                    element.style.right = (randomInteger(0,window.innerWidth - 200))+'px'
+                    element.style.top = (randomInteger(0,window.innerHeight - 200))+'px'
+                }
             }
         }
         
