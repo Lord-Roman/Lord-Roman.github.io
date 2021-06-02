@@ -1,1 +1,173 @@
-var dice,log=console.log,key=1,difficult=6,difficult__change=0,success=0,fail=0,flawless=0,charm=1,rez=[];function randomInteger(e,t){var c=e-.5+Math.random()*(t-e+1);return Math.round(c)}function roll(){$(".monitor").html(""),getRandom(key).forEach(function(e){let t='<span style="color:rgb(255,'+e.color+');">'+e.value+"</span>";$(".monitor").append(t),$(".monitor").append(",")}),$(".success__number").text(success),$(".fail__number").text(fail),$(".flawless__number").text(flawless)}function getDice(){return randomInteger(1,10)}function rethrow(e){e?e-=60:e=180;let t={color:e+","+e,value:dice=getDice()};rez.push(t),dice>=difficult&&(success++,flawless++),10==dice&&rethrow(e)}function Charm(e){if(charm&&1==e){charm--,e=Charm(getDice())}return e}function getRandom(e){document.getElementById("img").style.display="none",success=0,fail=0,flawless=0,dice=0,charm=0,rez=[],e>=7&&charm++,e>=8&&charm++,10==e&&charm++;let t=randomInteger(1,e);for(var c=0;c<e;c++){let e={color:"255,255",value:dice=Charm(dice=getDice())};if(dice>=difficult&&(success++,flawless++,c==t&&(e.color="0,255",document.getElementById("img")))){let e=document.getElementById("img");e.style.display="block",e.style.right=randomInteger(0,window.innerWidth-200)+"px",e.style.top=randomInteger(0,window.innerHeight-200)+"px"}1==dice&&(fail++,success--),rez.push(e),10==dice&&rethrow()}return log(rez),rez}$(function(){$(document).keydown(function(e){"Shift"==e.key&&(difficult__change=1)}),$(document).keyup(function(e){var t=0;log(e.key),log(e.keyCode),log("difficult__change",difficult__change),difficult__change&&(e.keyCode>48&&e.keyCode<=57?difficult=e.keyCode-48:48==e.keyCode&&(difficult=e.keyCode-38),$(".difficulty__number").text(difficult)),"Shift"==e.key&&(difficult__change=0),e.key>=1&&e.key<=9?(key=e.key,t=1):0==e.key&&(key=10,t=1),e.keyCode>95&&e.keyCode<=105&&(key=1*key+10,t=1),log(key),t&&roll()})});
+var log = console.log;
+var key = 1;
+var difficult = 6;
+var difficult__change = 0;
+var success = 0;
+var fail = 0;
+var flawless = 0;
+var charm = 1;
+
+
+var rez = [];
+var dice;
+
+function randomInteger(min, max) {
+  var rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+}
+function roll(){
+    $('.monitor').html('');
+    let result = getRandom(key);
+    result.forEach(function(item) {
+        let elem = '<span style="color:rgb(255,' + item.color + ');">' + item.value + '</span>';
+        $('.monitor').append(elem);
+        $('.monitor').append(',');
+    })
+    if(success<0){
+        document.getElementById("img").style.display = "none"
+        document.getElementById("wall").style.display = "block";
+    }
+    $('.success__number').text(success);
+    $('.fail__number').text(fail);
+    $('.flawless__number').text(flawless);
+}
+function getDice(){
+    return randomInteger(1,10);
+}
+function rethrow(color) {
+    dice = getDice();
+    if(color){
+        color = color - 60;   
+    }else{
+        color = 180;
+    }
+    let item = {color: color+','+color, value:dice} 
+    rez.push(item);
+
+    if(dice >= difficult){
+        success++;
+        flawless++;
+    }
+    if(dice == 10){
+        rethrow(color);
+    }
+}
+
+function Charm(dice) {
+    if(charm && (dice == 1)){
+        charm--;
+        let newDice = getDice();
+        dice = Charm(newDice);
+    }
+    return dice;
+}
+
+function getRandom(numberOfDice) {
+    document.getElementById("img").style.display = "none";
+    document.getElementById("wall").style.display = "none";
+
+    success = 0;
+    fail = 0;
+    flawless = 0;
+    dice = 0;
+    charm = 0;
+    rez = [];
+
+
+
+    if(numberOfDice >= 7){
+        charm++;
+    }
+    if(numberOfDice >= 8){
+        charm++;
+    }
+    if(numberOfDice == 10){
+        charm++;
+    }
+    let hornySuccess = randomInteger(1,numberOfDice);
+    for (var i = 0; i < numberOfDice; i++) {
+        dice = getDice();
+
+        dice = Charm(dice);
+        
+        let item = {color: '255,255', value:dice}
+
+        if(dice >= difficult){
+            success++;
+            flawless++;
+            if(i == hornySuccess){
+                item.color = '0,255';
+                if(document.getElementById("img")){
+                    let wrapper = document.getElementById("wrapper");
+                    let left = wrapper.getBoundingClientRect().left;
+                    let right = wrapper.getBoundingClientRect().right;
+                    let top = wrapper.getBoundingClientRect().top;
+                    let bottom = wrapper.getBoundingClientRect().bottom;
+    
+                    let element = document.getElementById("img")
+                    let imgLeft = randomInteger(0,window.innerWidth - 200)
+                    let imgTop = randomInteger(0,window.innerHeight - 200)
+
+                    if((imgLeft + 200)>left && imgLeft<right && (imgTop+200)>top && imgTop < bottom){
+                        imgLeft = right;
+                    }
+                    element.style.left = (imgLeft)+'px'
+                    element.style.top = (imgTop)+'px'
+                    element.style.display = "block";
+                }
+            }
+        }
+        
+        if(dice == 1){
+            fail++;
+            success--;
+        }
+        
+        rez.push(item);
+
+        if(dice == 10){
+            rethrow()
+        }
+    }
+    log(rez);
+
+    return rez
+}
+$(function() {
+    $(document).keydown(function(e) {
+        if(e.key == 'Shift'){
+            difficult__change = 1;
+        }
+    })
+    $(document).keyup(function(e) {
+        var toRoll = 0;
+        log(e.key);
+        log(e.keyCode);
+        log('difficult__change',difficult__change)
+        if(difficult__change){
+            if(e.keyCode > 48 && e.keyCode <= 57){
+                difficult = e.keyCode - 48;
+            }else if(e.keyCode == 48){
+                difficult = e.keyCode - 38;
+            }
+            $('.difficulty__number').text(difficult);
+        }
+        if(e.key == 'Shift'){
+            difficult__change = 0;
+        }
+        if(e.key >= 1 && e.key <= 9)
+        {
+            key = e.key;
+            toRoll = 1;
+        }else if(e.key == 0){
+            key = 10;
+            toRoll = 1;
+        }
+        if(e.keyCode>95 && e.keyCode<=105){
+            key = (key*1) + 10;
+            toRoll = 1;
+        }
+        log(key);
+        toRoll && roll();
+    })
+});
