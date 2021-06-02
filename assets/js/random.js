@@ -24,8 +24,12 @@ function roll(){
         $('.monitor').append(',');
     })
     if(success<0){
-        document.getElementById("img").style.display = "none"
-        document.getElementById("wall").style.display = "block";
+        if(document.getElementById("img")){
+            document.getElementById("img").style.display = "none"
+        }
+        if(document.getElementById("wall")){
+            document.getElementById("wall").style.display = "block";
+        }
     }
     $('.success__number').text(success);
     $('.fail__number').text(fail);
