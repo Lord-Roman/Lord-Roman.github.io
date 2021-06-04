@@ -56,5 +56,8 @@ $(function() {
     getText();
     $(document).keyup(function(e) {
         getText();
+    });
+    document.addEventListener('touchstart', event => {
+      getText();
     })
 })
