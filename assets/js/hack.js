@@ -39,17 +39,22 @@ function randomInteger(min, max) {
   return Math.round(rand);
 }
 
-$(function() {
-    $(document).keyup(function(e) {
-        if(!sequence.length){
-            for (var i = 0; i < hack.length; i++) {
-                sequence.push(i);
-            }
-            console.log('reroll');
-        }else{
-            let index = randomInteger(0,sequence.length);
-            $('.text').text(hack[sequence[index]]);
-            sequence.splice(index, 1);
+function getText(){
+    if(!sequence.length){
+        for (var i = 0; i < hack.length; i++) {
+            sequence.push(i);
         }
+        console.log('reroll');
+    }else{
+        let index = randomInteger(0,sequence.length);
+        $('.text').text(hack[sequence[index]]);
+        sequence.splice(index, 1);
+    }
+}
+
+$(function() {
+    getText();
+    $(document).keyup(function(e) {
+        getText();
     })
 })
