@@ -53,6 +53,7 @@ function getText(){
 }
 
 $(function() {
+    console.log('start');
     getText();
     $(document).keyup(function(e) {
         getText();
