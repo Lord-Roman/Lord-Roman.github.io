@@ -22,7 +22,13 @@
 .text{
   position: absolute;
   top: 420px;
-  max-width: 485px;
+  max-width: 500px;
+  left: 38px;
+}
+.message{
+  position: absolute;
+  bottom: 170px;
+  max-width: 500px;
   left: 38px;
 }
 
