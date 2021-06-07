@@ -19,6 +19,12 @@
 
   /*z-index: -1;*/
 }
+.tooth{
+  transform-origin: center;
+  position: fixed;
+  width: 30px;
+  height: 30px;
+}
 
 * {
   box-sizing: border-box;
