@@ -1,0 +1,19 @@
+nav {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center; }
+
+.nav__item {
+  font-family: 'Roboto', 'Arial', sans-serif;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  padding: 0 12px;
+  margin: 0 12px;
+  line-height: 42px;
+  transition: 0.3s; }
+  .nav__item:hover {
+    color: #8888ff; }
