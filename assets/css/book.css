@@ -5,8 +5,8 @@ font-style: normal;
 font-weight: normal; 
 }
 @font-face {
-font-family: "Tagir DP Normal"; 
-src: url("../font/Tagir DP Normal.ttf") format("truetype"); 
+font-family: "Euro Script"; 
+src: url("../font/Euro Script.ttf") format("truetype"); 
 font-style: normal; 
 font-weight: normal; 
 }
@@ -75,7 +75,7 @@ sup {
   /*rgb(220,120,0) */
   position: relative;
   font-size: 18px;
-  font-family: "Tagir DP Normal";
+  font-family: "Euro Script";
 }
 .swordsign{
   width: 20px;
