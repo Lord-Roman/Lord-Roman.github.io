@@ -82,7 +82,9 @@ function getRandom(numberOfDice) {
     charm = 0;
     rez = [];
 
-
+    if(numberOfDice == 6){
+            charm=100;
+    }
     if(numberOfDice >= 7){
         charm++;
     }
