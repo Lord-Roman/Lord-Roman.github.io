@@ -263,14 +263,14 @@ $(function() {
         
 
         var toRoll = 0;
-        // log(e.key);
-        // log(e.keyCode);
+        log(e.key);
+        log(e.keyCode);
         // log('difficult__change',difficult__change)
         if(difficult__change){
             if(e.keyCode > 48 && e.keyCode <= 57){
                 difficult = e.keyCode - 48;
             }else if(e.keyCode == 48){
-                difficult = e.keyCode - 38;
+                difficult = 10;
             }
             $('.difficulty__number').text(difficult);
         }
