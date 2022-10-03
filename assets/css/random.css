@@ -1,7 +1,7 @@
 .wrapper {
   background-color: #000;
   width: 550px;
-  margin: calc(50vh - 75px) auto; }
+  margin: calc(50vh - 75px - 21px) auto; }
 .img{
   display: none;
   position: absolute;
