@@ -281,7 +281,7 @@ $(function() {
         {
             key = e.key;
             toRoll = 1;
-        }else if(e.key === 0){
+        }else if(e.key == 0){
             key = 10;
             toRoll = 1;
         }else if(e.key == 'Q'){
