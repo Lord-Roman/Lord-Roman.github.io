@@ -71,6 +71,19 @@ function Charm(dice) {
     return dice;
 }
 
+function Good(dice,index,numberOfDice) {
+    let newDice = dice;
+    if(good){
+        if( !(numberOfDice - index - 1) ){
+            newDice = randomInteger(2,10);
+        }
+        if(prev == 1){
+            newDice = randomInteger(difficult,10);
+        }
+    }
+    return newDice;
+}
+
 function getRandom(numberOfDice) {
     document.getElementById("img").style.display = "none";
     document.getElementById("wall").style.display = "none";
@@ -80,28 +93,30 @@ function getRandom(numberOfDice) {
     flawless = 0;
     dice = 0;
     charm = 0;
+    good = 0;
+    prev = 0;
     rez = [];
 
     if(numberOfDice == 3){
-            charm=100;
+        good++;
     }
     if(numberOfDice == 8){
-            charm=100;
+        good++;
     }
-    if(numberOfDice >= 7){
-        charm++;
-    }
-    if(numberOfDice >= 8){
-        charm++;
-    }
-    if(numberOfDice == 10){
+
+    if(numberOfDice >= 9){
         charm++;
     }
     let hornySuccess = randomInteger(1,numberOfDice);
     for (var i = 0; i < numberOfDice; i++) {
+        
         dice = getDice();
 
+        dice = Good(dice,i,numberOfDice);
+
         dice = Charm(dice);
+        
+        prev = dice;
         
         let item = {color: '255,255', value:dice}
 
@@ -263,8 +278,8 @@ $(function() {
         
 
         var toRoll = 0;
-        log(e.key);
-        log(e.keyCode);
+        // log(e.key);
+        // log(e.keyCode);
         // log('difficult__change',difficult__change)
         if(difficult__change){
             if(e.keyCode > 48 && e.keyCode <= 57){
