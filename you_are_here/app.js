@@ -51,7 +51,7 @@ function initApp() {
     })
     async function displayCountryByGPS(lat, lng){
         // 
-        const response = await fetch(`http://api.geonames.org/countryCodeJSON?lat=${lat}&lng=${lng}&username=${USER_NAME}`);
+        const response = await fetch(`https://secure.geonames.org/countryCodeJSON?lat=${lat}&lng=${lng}&username=${USER_NAME}`);
             // `https://geocode.xyz/${lat},${lng}?geoit=json&auth=${API_KEY}`
         if(!response.ok) return;
         const { countryName } = await response.json();
